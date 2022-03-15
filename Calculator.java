@@ -4,16 +4,16 @@ import java.applet.*;
 import java.awt.event.*;
 public class Calculator extends Applet implements ActionListener
 {
-    TextField inp;
+    TextField input;
     //Function to add features to the frame
     public void init()
     {
 	setBackground(Color.white);
 	setLayout(null);
 	int i;
-	inp = new TextField();
-	inp.setBounds(150,100,270,50);
-	this.add(inp);
+	input = new TextField();
+	input.setBounds(150,100,270,50);
+	this.add(input);
 	Button button[] = new Button[10];
 	for(i=0;i<10;i++)
 	{
@@ -32,25 +32,25 @@ public class Calculator extends Applet implements ActionListener
 	this.add(clr);
 	clr.addActionListener(this);
  
-	Button operator[] = new Button[5];
-	operator[0]=new Button("/");
-	operator[1]=new Button("*");
-	operator[2]=new Button("-");
-	operator[3]=new Button("+");
-	operator[4]=new Button("=");
+	Button operator_btn[] = new Button[5];
+	operator_btn[0]=new Button("/");
+	operator_btn[1]=new Button("*");
+	operator_btn[2]=new Button("-");
+	operator_btn[3]=new Button("+");
+	operator_btn[4]=new Button("=");
 	for(i=0;i<4;i++)
 	{
-	    operator[i].setBounds(300,150+(i*50),50,50);
-	    this.add(operator[i]);
-	    operator[i].addActionListener(this);
+	    operator_btn[i].setBounds(300,150+(i*50),50,50);
+	    this.add(operator_btn[i]);
+	    operator_btn[i].addActionListener(this);
 	}
-	operator[4].setBounds(350,300,70,50);
-	this.add(operator[4]);
-	operator[4].addActionListener(this);
+	operator_btn[4].setBounds(350,300,70,50);
+	this.add(operator_btn[4]);
+	operator_btn[4].addActionListener(this);
     }
-    String num1="";
+    String number1="";
     String op="";
-    String num2="";
+    String number2="";
     //Function to calculate the expression
     public void actionPerformed(ActionEvent e)
     {
@@ -59,27 +59,27 @@ public class Calculator extends Applet implements ActionListener
 	if(ch>='0' && ch<='9'|| ch=='.') 
 	{ 
 	    if (!op.equals("")) 
-		num2 = num2 + button; 
+		number2 = number2 + button; 
 	    else
-		num1 = num1 + button;   
-	    inp.setText(num1+op+num2); 
+		number1 = number1 + button;   
+	    input.setText(number1+op+number2); 
 	} 
 	else if(ch=='C') 
 	{ 
-	    num1 = op = num2 = ""; 
-	    inp.setText(""); 
+	    number1 = op = number2 = ""; 
+	    input.setText(""); 
 	}
 	else if (ch =='=') 
 	{ 
-	    if(!num1.equals("") && !num2.equals(""))
+	    if(!number1.equals("") && !number2.equals(""))
 	    {
 		double temp;
-		double n1=Double.parseDouble(num1);
-		double n2=Double.parseDouble(num2);
+		double n1=Double.parseDouble(number1);
+		double n2=Double.parseDouble(number2);
 		if(n2==0 && op.equals("/"))
 		{
-		    inp.setText(num1+op+num2+" = Zero Division Error");
-		    num1 = op = num2 = "";
+		    input.setText(number1+op+number2+" = Zero Division Error");
+		    number1 = op = number2 = "";
 		}
 		else
 		{
@@ -91,30 +91,30 @@ public class Calculator extends Applet implements ActionListener
 	  	        temp = n1/n2; 
 		    else
 		        temp = n1*n2; 
-		    inp.setText(num1+op+num2+" = "+temp); 
-		    num1 = Double.toString(temp);
-		    op = num2 = ""; 
+		    input.setText(number1+op+number2+" = "+temp); 
+		    number1 = Double.toString(temp);
+		    op = number2 = ""; 
 	        }
             }
 	    else
 	    {
-		num1 = op = num2 = ""; 
-		inp.setText("");
+		number1 = op = number2 = ""; 
+		input.setText("");
 	    }
         } 
 	else 
 	{ 
-	    if (op.equals("") || num2.equals("")) 
+	    if (op.equals("") || number2.equals("")) 
 		op = button; 
 	    else 
 	    { 
 		double temp;
-		double n1=Double.parseDouble(num1);
-		double n2=Double.parseDouble(num2);
+		double n1=Double.parseDouble(number1);
+		double n2=Double.parseDouble(number2);
 		if(n2==0 && op.equals("/"))
 		{
-		    inp.setText(num1+op+num2+" = Zero Division Error");
-		    num1 = op = num2 = "";
+		    input.setText(number1+op+number2+" = Zero Division Error");
+		    number1 = op = number2 = "";
 		}
 		else
 		{
@@ -126,12 +126,12 @@ public class Calculator extends Applet implements ActionListener
 	  	        temp = n1/n2; 
 		    else
 		        temp = n1*n2; 
-		    num1 = Double.toString(temp); 
+		    number1 = Double.toString(temp); 
 		    op = button; 
-		    num2 = ""; 
+		    number2 = ""; 
 	        }
             }
-	    inp.setText(num1+op+num2);
+	    input.setText(number1+op+number2);
         }
     }
 }
